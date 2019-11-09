@@ -18,6 +18,7 @@
         android:layout_height="0dp">
 
         <TextView
+            android:layout_marginLeft="10dp"
             android:textSize="45dp"
             android:textStyle="bold"
             android:textColor="#fff"
@@ -27,6 +28,7 @@
 
         <Button
             android:id="@+id/star"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/star_black"
@@ -37,7 +39,7 @@
 
     <LinearLayout
         android:background="#2196F3"
-        android:layout_weight="0.8"
+        android:layout_weight="0.7"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -64,6 +66,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5">
@@ -76,4 +79,60 @@
     </LinearLayout>
 
     </LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/switch_l"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:fab_addButtonColorNormal="@color/colorWhite"
+        app:fab_addButtonColorPressed="@color/white_pressed"
+        app:fab_addButtonSize="mini"
+        app:fab_addButtonPlusIconColor="@color/half_black"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/menu_labels_style"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            app:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorWhite"
+            app:fab_title="日—>中"
+            android:id="@+id/JC"
+            app:fab_colorPressed="@color/white_pressed" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/CJ"
+            app:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorWhite"
+            app:fab_colorPressed="@color/white_pressed"
+            app:fab_title="中—>日"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/EC"
+            app:fab_title="英—>中"
+            app:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorWhite"
+            app:fab_colorPressed="@color/white_pressed"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/CE"
+            android:layout_width="wrap_content"
+            app:fab_size="mini"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorWhite"
+            app:fab_title="中—>英"
+            app:fab_colorPressed="@color/white_pressed"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 </RelativeLayout>
