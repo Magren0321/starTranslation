@@ -6,6 +6,10 @@ import android.net.NetworkInfo;
 
 import com.example.translate.Base.baseBean;
 
+import java.util.List;
+
+import retrofit2.Call;
+
 public class presenter {
 
     private moudle moudle;
@@ -17,14 +21,13 @@ public class presenter {
         this.viewinterface = viewinterface;
     }
 
-    public String getdata(String tl,String q){
-       String  getWord =  moudle.getdata(tl,q);
+    public Call<baseBean> getdata(String tl, String q){
 
-       return getWord;
+        return  moudle.getdata(tl,q);
     }
 
 
-    private boolean checkParameter(Context context) {
+    public boolean checkParameter(Context context) {
         if (!checkNetwork(context)) {
             viewinterface.showNetworkError();
             return false;

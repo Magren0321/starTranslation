@@ -1,4 +1,4 @@
-package com.example.translate.Base;
+package com.example.translate.homepage;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,31 +11,33 @@ import android.widget.TextView;
 
 import com.example.translate.R;
 
+import java.util.List;
+
 public class adapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
-    String data;
+    List<String> list;
     String word;
 
-    public adapter(Context context,String data,String word){
+    public adapter(Context context,List<String>list,String word){
         layoutInflater  = LayoutInflater.from(context);
-        this.data = data;
+        this.list = list;
         this.word = word;
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class adapter extends BaseAdapter {
 
             }
         });
+        String data = list.get(position);
         tv.setText(data);
         return view;
     }

@@ -2,20 +2,22 @@ package com.example.translate.homepage;
 
 import com.example.translate.Base.baseBean;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
+
 import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.QueryMap;
+import retrofit2.http.Query;
+
 
 
 public interface geturl_interface {
 
-    @GET("translate_a/single")
-    Call<baseBean> getCall(@QueryMap  Map<String, String> params);
+    @GET("translate?")
+    Call<baseBean> getCall(@Query("q")String q,
+                           @Query("from")String from,
+                           @Query("to")String to,
+                           @Query("appid")String appid,
+                           @Query("salt")String salt,
+                           @Query("sign")String sign);
 
 }

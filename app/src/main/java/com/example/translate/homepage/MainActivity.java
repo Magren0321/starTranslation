@@ -5,20 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.translate.Base.adapter;
+import com.example.translate.Base.baseBean;
 import com.example.translate.R;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements viewinterface{
 
@@ -43,14 +48,17 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
     //英中
     @BindView(R.id.EC)
     FloatingActionButton ec;
+    @BindView(R.id.switch_l)
+    FloatingActionsMenu menu;
 
     presenter presenter;
 
     String English = "en";
-    String Japanese = "ja";
-    String Chinese = "zh_CN";
+    String Japanese = "jp";
+    String Chinese = "zh";
     String tl  = English;
     String q;
+    String word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +75,10 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
                 if (KeyEvent.KEYCODE_ENTER == keyCode && KeyEvent.ACTION_DOWN == event.getAction()) {
                     //处理事件
                     q = getSearch();
-                    presenter.checkNetwork(getApplicationContext());
-                    String word = presenter.getdata(tl,q);
-                    adapter adapter = new adapter(getApplicationContext(),word,q);
-                    lv.setAdapter(adapter);
+                    presenter.checkParameter(getApplicationContext());
+                    Call<baseBean>call = presenter.getdata(q,tl);
+                    setData(call);
+                    et.setText("");
                     return true;
                 }
                 return false;
@@ -83,17 +91,48 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         switch (view.getId()) {
             case R.id.JC:
                 tl = Chinese;
+                Toast.makeText(getApplicationContext(),"日——>中",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.CJ:
                 tl = Japanese;
+                Toast.makeText(getApplicationContext(),"中——>日",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.CE:
                 tl = English;
+                Toast.makeText(getApplicationContext(),"中——>英",Toast.LENGTH_SHORT).show();
                 break;
             case  R.id.EC:
                 tl = Chinese;
+                Toast.makeText(getApplicationContext(),"英——>中",Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    public void setData(Call<baseBean>call){
+        //发送网络请求(异步)
+        call.enqueue(new Callback<baseBean>() {
+            //请求成功时回调
+            @Override
+            public void onResponse(Call<baseBean> call, Response<baseBean> response) {
+                // 处理返回的数据
+                word = response.body().trans_result.get(0).getDst();
+                List<String>data =new ArrayList<>();
+                data.add(word);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter adapter = new adapter(getApplicationContext(),data,q);
+                        lv.setAdapter(adapter);
+                    }
+                });
+            }
+            //请求失败时回调
+            @Override
+            public void onFailure(Call<baseBean> call, Throwable throwable) {
+                System.out.println("连接失败");
+            }
+        });
+
     }
 
     @Override
