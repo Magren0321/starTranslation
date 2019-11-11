@@ -5,11 +5,12 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.translate"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -39,4 +40,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation 'android.arch.persistence.room:compiler:1.1.1'
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha5"
 }

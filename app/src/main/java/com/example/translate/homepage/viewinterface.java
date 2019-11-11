@@ -6,4 +6,5 @@ public interface viewinterface {
 
     void showNetworkError();//显示网络异常
 
+
 }

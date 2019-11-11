@@ -10,13 +10,6 @@ public class baseBean {
     public String to;
     public List<result_bean>trans_result;
 
-    public class result_bean{
-        String src;
-        String dst;
 
-        public String getDst(){
-            return dst;
-        }
-    }
 
 }

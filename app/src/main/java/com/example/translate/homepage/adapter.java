@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.translate.Base.AppdataBase;
+import com.example.translate.Base.result_bean;
 import com.example.translate.R;
 
 import java.util.List;
@@ -18,8 +21,10 @@ public class adapter extends BaseAdapter {
     LayoutInflater layoutInflater;
     List<String> list;
     String word;
+    Context context;
 
     public adapter(Context context,List<String>list,String word){
+        this.context = context;
         layoutInflater  = LayoutInflater.from(context);
         this.list = list;
         this.word = word;
@@ -48,7 +53,11 @@ public class adapter extends BaseAdapter {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                result_bean bean = new result_bean();
+                bean.setSrc(word);
+                bean.setDst(list.get(0));
+                AppdataBase.getDefault(context).wordDao().insertWord(bean);
+                Toast.makeText(context,"收藏成功",Toast.LENGTH_SHORT).show();
             }
         });
         String data = list.get(position);

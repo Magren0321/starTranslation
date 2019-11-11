@@ -2,6 +2,7 @@ package com.example.translate.homepage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         ButterKnife.bind(MainActivity.this);
 
@@ -144,4 +147,7 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
     public void showNetworkError() {
         Toast.makeText(getApplicationContext(),"网络异常",Toast.LENGTH_LONG).show();
     }
+
+
+
 }
