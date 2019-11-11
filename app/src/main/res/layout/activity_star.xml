@@ -30,11 +30,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/SR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ListView
             android:id="@+id/lv_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 
 </LinearLayout>

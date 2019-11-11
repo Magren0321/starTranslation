@@ -18,6 +18,8 @@ import java.util.List;
 
 public class adapter extends BaseAdapter {
 
+    result_bean result_bean;
+
     LayoutInflater layoutInflater;
     List<String> list;
     String word;
@@ -50,14 +52,26 @@ public class adapter extends BaseAdapter {
         View view = layoutInflater.inflate(R.layout.item,null);
         TextView tv = view.findViewById(R.id.tv);
         Button bt = view.findViewById(R.id.star_lv);
+        result_bean = AppdataBase.getDefault(context).wordDao().loadStar(word,list.get(0));
+        if(result_bean!=null){
+            bt.setBackgroundResource(R.drawable.star_black);
+        }
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                result_bean = AppdataBase.getDefault(context).wordDao().loadStar(word,list.get(0));
+                if(result_bean!=null){
+                    bt.setBackgroundResource(R.drawable.star_black);
+                    Toast.makeText(context,"已存在收藏列表",Toast.LENGTH_SHORT).show();
+                }
+                else {
                 result_bean bean = new result_bean();
                 bean.setSrc(word);
                 bean.setDst(list.get(0));
                 AppdataBase.getDefault(context).wordDao().insertWord(bean);
                 Toast.makeText(context,"收藏成功",Toast.LENGTH_SHORT).show();
+                bt.setBackgroundResource(R.drawable.star_black);
+                }
             }
         });
         String data = list.get(position);

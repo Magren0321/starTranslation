@@ -3,6 +3,7 @@ package com.example.translate.homepage;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.translate.Base.baseBean;
 import com.example.translate.R;
+import com.example.translate.star.Star;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
@@ -66,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         ButterKnife.bind(MainActivity.this);
 
         presenter = new presenter(this);
@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
                 tl = Chinese;
                 Toast.makeText(getApplicationContext(),"英——>中",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.star:
+                Intent i = new Intent(getApplicationContext(), Star.class);
+                startActivity(i);
         }
     }
 
