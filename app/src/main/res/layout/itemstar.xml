@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_marginLeft="10dp"
@@ -14,32 +14,34 @@
             android:orientation="vertical"
             android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/src"
                 android:textColor="#000000"
-                android:maxEms="15"
                 android:textSize="20dp"
-                android:ellipsize="end"
                 android:text="@string/test"
-                android:layout_weight="2"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
-
+                android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/dst"
-                android:ellipsize="end"
-                android:maxEms="15"
-                android:layout_marginBottom="5dp"
                 android:textSize="15dp"
                 android:text="@string/test"
                 android:textColor="#888181"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-
+                android:layout_height="match_parent"/>
+            </LinearLayout>
         </LinearLayout>
 
         <Button

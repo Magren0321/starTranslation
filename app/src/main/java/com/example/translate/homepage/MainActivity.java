@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
 
         presenter = new presenter(this);
 
+
         et.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -138,8 +139,9 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
                 System.out.println("连接失败");
             }
         });
-
     }
+
+
 
     @Override
     public String getSearch() {
