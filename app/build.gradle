@@ -11,11 +11,15 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
     }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
     compileOptions {
@@ -43,4 +47,7 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation 'android.arch.persistence.room:compiler:1.1.1'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha5"
+
+    implementation files('libs/YoudaoBase_v2.0.0.jar')
+    implementation files('libs/YoudaoTranslateOnline_v2.0.0.jar')
 }

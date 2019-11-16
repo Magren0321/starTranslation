@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +14,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.translate.Base.TranslateData;
 import com.example.translate.Base.baseBean;
 import com.example.translate.R;
 import com.example.translate.star.Star;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.youdao.sdk.app.YouDaoApplication;
+import com.youdao.sdk.ydonlinetranslate.Translator;
+import com.youdao.sdk.ydtranslate.Translate;
+import com.youdao.sdk.ydtranslate.TranslateErrorCode;
+import com.youdao.sdk.ydtranslate.TranslateListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,16 +65,21 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
     presenter presenter;
 
     String English = "en";
-    String Japanese = "jp";
-    String Chinese = "zh";
-    String tl  = English;
+    String Japanese = "ja";
+    String Chinese = "zh-CHS";
+    String to  = English;
     String q;
-    String word;
+    String from = Chinese;
+
+
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        YouDaoApplication.init(this,"33c36c0f6d8b3fe7");
 
         ButterKnife.bind(MainActivity.this);
 
@@ -78,10 +91,11 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (KeyEvent.KEYCODE_ENTER == keyCode && KeyEvent.ACTION_DOWN == event.getAction()) {
                     //处理事件
+
                     q = getSearch();
                     presenter.checkParameter(getApplicationContext());
-                    Call<baseBean>call = presenter.getdata(q,tl);
-                    setData(call);
+                    getData();
+
                     et.setText("");
                     return true;
                 }
@@ -90,23 +104,62 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         });
     }
 
+    public void getData(){
+        Translator translator = presenter.getdata(q,from,to);
+        List<TranslateData>list = new ArrayList<>();
+        translator.lookup(q, "requestId", new TranslateListener() {
+            @Override
+            public void onError(TranslateErrorCode translateErrorCode, String s) {
+
+            }
+            @Override
+            public void onResult(final Translate result, String input, String requestId) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        TranslateData td = new TranslateData(
+                                System.currentTimeMillis(), result);
+
+                        list.add(td);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter adapter = new adapter(getApplicationContext(),list,q);
+                                lv.setAdapter(adapter);
+                            }
+                        });
+
+                    }
+                });
+            }
+            @Override
+            public void onResult(List<Translate> list, List<String> list1, List<TranslateErrorCode> list2, String s) {
+
+            }
+        });
+    }
+
     @OnClick({R.id.star, R.id.JC, R.id.CJ,R.id.CE,R.id.EC})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.JC:
-                tl = Chinese;
+                to = Chinese;
+                from = Japanese;
                 Toast.makeText(getApplicationContext(),"日——>中",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.CJ:
-                tl = Japanese;
+                to = Japanese;
+                from = Chinese;
                 Toast.makeText(getApplicationContext(),"中——>日",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.CE:
-                tl = English;
+                from = Chinese;
+                to = English;
                 Toast.makeText(getApplicationContext(),"中——>英",Toast.LENGTH_SHORT).show();
                 break;
             case  R.id.EC:
-                tl = Chinese;
+                to = Chinese;
+                from = English;
                 Toast.makeText(getApplicationContext(),"英——>中",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.star:
@@ -115,31 +168,6 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         }
     }
 
-    public void setData(Call<baseBean>call){
-        //发送网络请求(异步)
-        call.enqueue(new Callback<baseBean>() {
-            //请求成功时回调
-            @Override
-            public void onResponse(Call<baseBean> call, Response<baseBean> response) {
-                // 处理返回的数据
-                word = response.body().trans_result.get(0).getDst();
-                List<String>data =new ArrayList<>();
-                data.add(word);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter adapter = new adapter(getApplicationContext(),data,q);
-                        lv.setAdapter(adapter);
-                    }
-                });
-            }
-            //请求失败时回调
-            @Override
-            public void onFailure(Call<baseBean> call, Throwable throwable) {
-                System.out.println("连接失败");
-            }
-        });
-    }
 
 
 

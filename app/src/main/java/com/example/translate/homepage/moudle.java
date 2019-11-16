@@ -1,7 +1,18 @@
 package com.example.translate.homepage;
 
+import android.os.Handler;
+import android.util.Log;
+
 import com.example.translate.Base.MD5Utils;
+import com.example.translate.Base.TranslateData;
 import com.example.translate.Base.baseBean;
+import com.youdao.sdk.app.Language;
+import com.youdao.sdk.app.LanguageUtils;
+import com.youdao.sdk.ydonlinetranslate.Translator;
+import com.youdao.sdk.ydtranslate.Translate;
+import com.youdao.sdk.ydtranslate.TranslateErrorCode;
+import com.youdao.sdk.ydtranslate.TranslateListener;
+import com.youdao.sdk.ydtranslate.TranslateParameters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,33 +25,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class moudle {
 
-    public String word;
-    public Retrofit retrofit;
-    public String url = "http://api.fanyi.baidu.com/api/trans/vip/";
+    Translator translator;
 
-    public String appid = "20191110000355560";
-    public String password = "Vd9VgkvLAAUapc4kstsJ";
-    String from = "auto";
-    public String sign;
 
-    public Call<baseBean> getdata(String q,String to) {
-       retrofit = new Retrofit.Builder()
-                .baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build();
+    public Translator getdata(String q, String from, String to) {
 
-        //创建 网络请求接口 的实例
-        geturl_interface request = retrofit.create(geturl_interface.class);
 
-        // 随机数
-        String salt = String.valueOf(System.currentTimeMillis());
+        Language langFrom = LanguageUtils.getLangByName(from);
+        Language langTo = LanguageUtils.getLangByName(to);
 
-        String str = appid+q+salt+password;
-        sign = MD5Utils.stringToMD5(str);
+        TranslateParameters tps = new TranslateParameters.Builder()
+                .source(q).from(langFrom).to(langTo).build();
 
-        //对 发送请求 进行封装
-        Call<baseBean> call = request.getCall(q,from,to,appid,salt,sign);
+        translator = Translator.getInstance(tps);
 
-        return call;
 
+        return  translator;
     }
 
 }

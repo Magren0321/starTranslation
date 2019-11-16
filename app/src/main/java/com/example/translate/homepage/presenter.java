@@ -4,7 +4,9 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.example.translate.Base.TranslateData;
 import com.example.translate.Base.baseBean;
+import com.youdao.sdk.ydonlinetranslate.Translator;
 
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class presenter {
         this.viewinterface = viewinterface;
     }
 
-    public Call<baseBean> getdata(String tl, String q){
+    public Translator getdata(String q, String from, String to){
 
-        return  moudle.getdata(tl,q);
+        return  moudle.getdata(q,from,to);
     }
 
 

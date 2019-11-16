@@ -1,0 +1,10 @@
+-ignorewarnings
+-libraryjars libs/ YoudaoBase_v2.0.0.jar
+-libraryjars libs/ YoudaoCnDictOffline.jar
+-libraryjars libs/ YoudaoTranslateOnline_v2.0.0.jar
+-libraryjars libs/ YoudaoTranslateOffline.jar
+
+-keep class com.youdao.sdk.ydtranslate.** { *;}
+-keep class com.youdao.sdk.chdict.** { *;}
+-keep class com.youdao.localtransengine.** { *;}
+-keep class com.youdao.sdk.ydonlinetranslate.** { *;}

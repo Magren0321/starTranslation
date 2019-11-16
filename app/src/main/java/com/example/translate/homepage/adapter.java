@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.translate.Base.AppdataBase;
+import com.example.translate.Base.TranslateData;
 import com.example.translate.Base.result_bean;
 import com.example.translate.R;
 
@@ -18,14 +19,13 @@ import java.util.List;
 
 public class adapter extends BaseAdapter {
 
-    result_bean result_bean;
 
     LayoutInflater layoutInflater;
-    List<String> list;
+    List<TranslateData> list;
     String word;
     Context context;
 
-    public adapter(Context context,List<String>list,String word){
+    public adapter(Context context,List<TranslateData>list,String word){
         this.context = context;
         layoutInflater  = LayoutInflater.from(context);
         this.list = list;
@@ -50,32 +50,18 @@ public class adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = layoutInflater.inflate(R.layout.item,null);
-        TextView tv = view.findViewById(R.id.tv);
-        Button bt = view.findViewById(R.id.star_lv);
-        result_bean = AppdataBase.getDefault(context).wordDao().loadStar(word,list.get(0));
-        if(result_bean!=null){
-            bt.setBackgroundResource(R.drawable.star_black);
-        }
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                result_bean = AppdataBase.getDefault(context).wordDao().loadStar(word,list.get(0));
-                if(result_bean!=null){
-                    bt.setBackgroundResource(R.drawable.star_black);
-                    Toast.makeText(context,"已存在收藏列表",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                result_bean bean = new result_bean();
-                bean.setSrc(word);
-                bean.setDst(list.get(0));
-                AppdataBase.getDefault(context).wordDao().insertWord(bean);
-                Toast.makeText(context,"收藏成功",Toast.LENGTH_SHORT).show();
-                bt.setBackgroundResource(R.drawable.star_black);
-                }
-            }
-        });
-        String data = list.get(position);
-        tv.setText(data);
+        TextView tv1 =view.findViewById(R.id.explain);
+        TextView tv2 = view.findViewById(R.id.DeepLink);
+        TextView tv3 = view.findViewById(R.id.DictDeepLink);
+        TextView tv4 = view.findViewById(R.id.UsPhonetic);
+        TextView tv5 = view.findViewById(R.id.UKPhonetic);
+
+       tv2.setText(list.get(position).getTranslate().getDeeplink());
+       tv1.setText(list.get(position).getTranslate().getExplains().get(0));
+       tv3.setText(list.get(position).getTranslate().getDictDeeplink());
+       tv4.setText(list.get(position).getTranslate().getUsPhonetic());
+       tv5.setText(list.get(position).getTranslate().getUkPhonetic());
+
         return view;
     }
 }

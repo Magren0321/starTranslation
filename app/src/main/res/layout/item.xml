@@ -29,7 +29,117 @@
                    android:paddingTop="5dp"
                    android:textSize="20dp"
                    android:text="@string/test"
-                   android:id="@+id/tv"
+                   android:id="@+id/explain"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/DeepLink"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/Phonetic"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/from"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/le"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/DictDeepLink"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/UKPhonetic"
+                   android:textColor="@color/colorWhite"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"/>
+
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:paddingLeft="15dp"
+                   android:paddingTop="5dp"
+                   android:textSize="20dp"
+                   android:text="@string/test"
+                   android:id="@+id/UsPhonetic"
                    android:textColor="@color/colorWhite"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"/>
