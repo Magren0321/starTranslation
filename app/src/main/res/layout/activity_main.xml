@@ -13,9 +13,8 @@
 
     <RelativeLayout
         android:background="#1B6FB3"
-        android:layout_weight="0.5"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_marginBottom="5dp"
@@ -25,7 +24,7 @@
             android:textColor="#fff"
             android:text="Translation"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/star"
@@ -40,13 +39,42 @@
 
     <LinearLayout
         android:background="#2196F3"
-        android:layout_weight="0.9"
+        android:layout_weight="1.4"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="0dp">
 
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Spinner
+                android:layout_toLeftOf="@+id/to"
+                android:id="@+id/spinner_left"
+                android:entries="@array/languages"
+                android:layout_width="100dp"
+                android:layout_height="50dp"/>
+            <ImageView
+                android:id="@+id/to"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/arrow"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/to"
+                android:id="@+id/spinner_right"
+                android:entries="@array/languages"
+                android:layout_width="100dp"
+                android:layout_height="50dp"/>
+
+        </RelativeLayout>
 
         <com.github.florent37.materialtextfield.MaterialTextField
             android:layout_marginRight="5dp"
+            android:layout_weight="3"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +100,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="4.9">
 
         <ListView
             android:id="@+id/lv"
@@ -83,59 +111,5 @@
 
     </LinearLayout>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/switch_l"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:fab_addButtonColorNormal="@color/colorWhite"
-        app:fab_addButtonColorPressed="@color/white_pressed"
-        app:fab_addButtonSize="mini"
-        app:fab_addButtonPlusIconColor="@color/half_black"
-        app:fab_expandDirection="up"
-        app:fab_labelStyle="@style/menu_labels_style"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            app:fab_size="mini"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorWhite"
-            app:fab_title="日—>中"
-            android:id="@+id/JC"
-            app:fab_colorPressed="@color/white_pressed" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/CJ"
-            app:fab_size="mini"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorWhite"
-            app:fab_colorPressed="@color/white_pressed"
-            app:fab_title="中—>日"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/EC"
-            app:fab_title="英—>中"
-            app:fab_size="mini"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorWhite"
-            app:fab_colorPressed="@color/white_pressed"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/CE"
-            android:layout_width="wrap_content"
-            app:fab_size="mini"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorWhite"
-            app:fab_title="中—>英"
-            app:fab_colorPressed="@color/white_pressed"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

@@ -3,14 +3,17 @@ package com.example.translate.homepage;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Entity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.translate.Base.TranslateData;
@@ -42,27 +45,17 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
     //收藏界面
     @BindView(R.id.star)
     Button star;
-    //日中
-    @BindView(R.id.JC)
-    FloatingActionButton jc;
-    //中日
-    @BindView(R.id.CJ)
-    FloatingActionButton cj;
-    //中英
-    @BindView(R.id.CE)
-    FloatingActionButton ce;
-    //英中
-    @BindView(R.id.EC)
-    FloatingActionButton ec;
-    @BindView(R.id.switch_l)
-    FloatingActionsMenu menu;
+    @BindView(R.id.spinner_left)
+    Spinner spinner_left;
+    @BindView(R.id.spinner_right)
+    Spinner spinner_right;
 
     presenter presenter;
 
     String English = "英文";
     String Japanese = "日文";
     String Chinese = "中文";
-    String to  = English;
+    String to  = Chinese;
     String q;
     String from = Chinese;
 
@@ -80,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
 
         presenter = new presenter(this);
 
+        Select();
 
         et.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -94,6 +88,58 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
                     return true;
                 }
                 return false;
+            }
+        });
+
+
+
+    }
+
+    public void Select(){
+        spinner_left.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+                switch (pos){
+                    case 0:
+                        from = Chinese;
+                        break;
+                    case 1:
+                        from = English;
+                        break;
+                    case 2:
+                        from = Japanese;
+                        break;
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+
+        spinner_right.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+
+                switch (pos){
+                    case 0:
+                        to = Chinese;
+                        break;
+                    case 1:
+                        to = English;
+                        break;
+                    case 2:
+                        to = Japanese;
+                        break;
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
             }
         });
     }
@@ -134,29 +180,9 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         });
     }
 
-    @OnClick({R.id.star, R.id.JC, R.id.CJ,R.id.CE,R.id.EC})
+    @OnClick({R.id.star})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.JC:
-                to = Chinese;
-                from = Japanese;
-                Toast.makeText(getApplicationContext(),"日——>中",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.CJ:
-                to = Japanese;
-                from = Chinese;
-                Toast.makeText(getApplicationContext(),"中——>日",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.CE:
-                from = Chinese;
-                to = English;
-                Toast.makeText(getApplicationContext(),"中——>英",Toast.LENGTH_SHORT).show();
-                break;
-            case  R.id.EC:
-                to = Chinese;
-                from = English;
-                Toast.makeText(getApplicationContext(),"英——>中",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.star:
                 Intent i = new Intent(getApplicationContext(), Star.class);
                 startActivity(i);
