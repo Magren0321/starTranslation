@@ -1,3 +1,4 @@
+
 package com.example.translate.Base;
 
 import androidx.room.Dao;

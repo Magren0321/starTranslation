@@ -3,21 +3,15 @@ package com.example.translate.star;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.example.translate.Base.AppdataBase;
-import com.example.translate.R;
 import com.example.translate.Base.result_bean;
-import com.example.translate.homepage.MainActivity;
+import com.example.translate.Base.AppdataBase;
+import com.example.translate.Base.TranslateData;
+import com.example.translate.R;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,8 +38,6 @@ public class Star extends AppCompatActivity {
 
         starAdapter adapter = new starAdapter(list,getApplicationContext());
         lv.setAdapter(adapter);
-
-
     }
 
     public void getData(){

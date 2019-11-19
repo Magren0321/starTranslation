@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.translate.Base.TranslateData;
-import com.example.translate.Base.baseBean;
 import com.example.translate.R;
 import com.example.translate.star.Star;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -32,9 +30,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements viewinterface{
 
@@ -64,9 +59,9 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
 
     presenter presenter;
 
-    String English = "en";
-    String Japanese = "ja";
-    String Chinese = "zh-CHS";
+    String English = "英文";
+    String Japanese = "日文";
+    String Chinese = "中文";
     String to  = English;
     String q;
     String from = Chinese;
@@ -94,8 +89,7 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
 
                     q = getSearch();
                     presenter.checkParameter(getApplicationContext());
-                    getData();
-
+                    getData(q,from,to);
                     et.setText("");
                     return true;
                 }
@@ -104,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
         });
     }
 
-    public void getData(){
-        Translator translator = presenter.getdata(q,from,to);
+    public void getData(String word,String f_word,String t_word){
+        Translator translator = presenter.getdata(word,f_word,t_word);
         List<TranslateData>list = new ArrayList<>();
         translator.lookup(q, "requestId", new TranslateListener() {
             @Override
@@ -124,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements viewinterface{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                System.out.println(td.getTranslate().getLe());
                                 adapter adapter = new adapter(getApplicationContext(),list,q);
                                 lv.setAdapter(adapter);
                             }

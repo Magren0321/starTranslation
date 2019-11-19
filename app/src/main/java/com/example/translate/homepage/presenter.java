@@ -4,13 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.example.translate.Base.TranslateData;
-import com.example.translate.Base.baseBean;
 import com.youdao.sdk.ydonlinetranslate.Translator;
-
-import java.util.List;
-
-import retrofit2.Call;
 
 public class presenter {
 

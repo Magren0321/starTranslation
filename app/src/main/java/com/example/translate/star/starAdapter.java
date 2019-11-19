@@ -8,9 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.translate.Base.AppdataBase;
 import com.example.translate.Base.result_bean;
+import com.example.translate.Base.AppdataBase;
+import com.example.translate.Base.TranslateData;
 import com.example.translate.R;
 
 import java.util.List;

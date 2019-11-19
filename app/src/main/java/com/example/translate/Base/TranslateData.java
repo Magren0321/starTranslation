@@ -1,12 +1,21 @@
 package com.example.translate.Base;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.youdao.sdk.ydtranslate.Translate;
 import com.youdao.sdk.ydtranslate.WebExplain;
 
 import java.io.Serializable;
 import java.util.List;
 
+
 public class TranslateData implements Serializable {
+
+
+    int i;
 
     private Long createTime;
 

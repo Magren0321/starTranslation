@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+
 @Entity(tableName = "starWord")
 public class result_bean{
 
@@ -14,6 +16,7 @@ public class result_bean{
     String src;
     @ColumnInfo(name = "dst")
     String dst;
+
 
     public String getDst(){
         return dst;
