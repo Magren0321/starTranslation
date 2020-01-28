@@ -11,4 +11,12 @@
     <color name="half_black">#808080</color>
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
     <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorGray_b">#bbbbbb</color>
+    <color name="colorGray_e">#eeeeee</color>
+    <color name="colorGray_3">#333333</color>
+    <color name="colorGray_7">#777777</color>
+    <color name="colorDown">#eeeeee</color>>
+
+
 </resources>

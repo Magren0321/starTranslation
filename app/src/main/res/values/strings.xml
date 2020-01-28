@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Translation</string>
     <string name="test">abcdefghijkjakljslkajdkljsakldnsakldjsakldjklsajdklsajdklsajdklsajdklsajdlksajdlksajdklsajdklsajdlksajdklsajdklsajdklsajdklsajdklsajdkl</string>
+    <string name="text_press_again">再按一次退出</string>
+    <string name="title_dialog_tips">加载中</string>
+
 </resources>

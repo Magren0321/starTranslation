@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <RelativeLayout
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <org.angmarch.views.NiceSpinner
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/arrow"
+                android:layout_marginRight="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/spinner_left"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/arrow"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/arrow_two"/>
+            <org.angmarch.views.NiceSpinner
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/arrow"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/spinner_right"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:background="#E4DDDD"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <androidx.cardview.widget.CardView
+                app:cardBackgroundColor="#E6DFDF"
+                app:cardCornerRadius="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <EditText
+                    android:background="@null"
+                    android:maxLines="1"
+                    android:layout_marginLeft="15dp"
+                    android:hint="Search"
+                    android:layout_weight="5"
+                    android:id="@+id/et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                <Button
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:text="搜索"
+                    android:background="@drawable/button"
+                    android:layout_weight="1.3"
+                    android:id="@+id/bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12">
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

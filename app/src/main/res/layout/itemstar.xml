@@ -48,7 +48,7 @@
         <Button
             android:layout_marginRight="7dp"
             android:id="@+id/starbt"
-            android:background="@drawable/star_black"
+            android:background="@drawable/star"
             android:layout_gravity="center"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
