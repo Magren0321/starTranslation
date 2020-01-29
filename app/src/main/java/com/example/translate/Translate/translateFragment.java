@@ -69,10 +69,12 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
     String sign;
 
 
+    String[] position_list = {Chinese,Japanese,English};
     int position_right = 0;
     int position_left = 0;
 
     List<String> list;
+
 
     wordAdapter wordAdapter;
 
@@ -104,8 +106,6 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
         spinner_left.attachDataSource(list);
         spinner_right.attachDataSource(list);
 
-
-
     }
 
     @Override
@@ -115,15 +115,15 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
             public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        to = Chinese;
+                        to = position_list[0];
                         position_right = 0;
                         break;
                     case 1:
-                        to = Japanese;
+                        to = position_list[1];
                         position_right = 1;
                         break;
                     case 2:
-                        to = English;
+                        to = position_list[2];
                         position_right = 2;
                         break;
                 }
@@ -135,15 +135,15 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
             public void onItemSelected(NiceSpinner parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        to = Chinese;
+                        from = position_list[0];
                         position_left = 0;
                         break;
                     case 1:
-                        to = Japanese;
+                        from = position_list[1];
                         position_left = 1;
                         break;
                     case 2:
-                        to = English;
+                        from = position_list[2];
                         position_left = 2;
                         break;
                 }
@@ -175,16 +175,20 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
         switch (view.getId()){
             case R.id.bt:
                 q = et.getText().toString();
-                salt = String.valueOf(System.currentTimeMillis());
-                curtime = String.valueOf(System.currentTimeMillis() / 1000);
-                String signStr = appID+truncate(q)+salt+curtime+appKey;
-                sign = getDigest(signStr);
-                netConnection();
+                if(q.length()!=0){
+                    salt = String.valueOf(System.currentTimeMillis());
+                    curtime = String.valueOf(System.currentTimeMillis() / 1000);
+                    String signStr = appID+truncate(q)+salt+curtime+appKey;
+                    sign = getDigest(signStr);
+                    netConnection();
+                }
                 break;
             case R.id.arrow:
                 int i;
                 spinner_left.setSelectedIndex(position_right);
+                from = position_list[position_right];
                 spinner_right.setSelectedIndex(position_left);
+                to = position_list[position_left];
                 i = position_left;
                 position_left = position_right;
                 position_right = i;

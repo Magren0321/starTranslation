@@ -7,11 +7,12 @@
 
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#166DC5"
+        app:cardBackgroundColor="#F8F5F5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,21 +21,6 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-
-
-               <TextView
-                   android:paddingLeft="15dp"
-                   android:paddingTop="5dp"
-                   android:textSize="20dp"
-                   android:id="@+id/explain"
-                   android:textColor="@color/colorWhite"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"/>
-
-           </LinearLayout>
 
            <LinearLayout
                android:layout_marginTop="3dp"
@@ -48,7 +34,7 @@
 
                    <TextView
                        android:paddingTop="5dp"
-                       android:textColor="#fff"
+                       android:textColor="#252222"
                        android:textSize="20dp"
                        android:text="翻译："
                        android:layout_width="wrap_content"
@@ -64,7 +50,7 @@
                    android:paddingTop="5dp"
                    android:textSize="20dp"
                    android:id="@+id/translation"
-                   android:textColor="@color/colorWhite"
+                   android:textColor="#0C0B0B"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"/>
 
@@ -79,7 +65,7 @@
                    android:paddingTop="5dp"
                    android:textSize="20dp"
                    android:id="@+id/UsPhonetic"
-                   android:textColor="@color/colorWhite"
+                   android:textColor="#0F0E0E"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"/>
 
@@ -94,13 +80,14 @@
                    android:paddingTop="5dp"
                    android:textSize="20dp"
                    android:id="@+id/UkPhonetic"
-                   android:textColor="@color/colorWhite"
+                   android:textColor="#0A0909"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"/>
 
            </LinearLayout>
 
            <LinearLayout
+               android:layout_marginTop="5dp"
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
 
@@ -110,9 +97,10 @@
                    android:layout_height="match_parent">
 
                    <TextView
+                       android:visibility="gone"
                        android:id="@+id/web_information"
                        android:textSize="20dp"
-                       android:textColor="#fff"
+                       android:textColor="#141111"
                        android:text="网络释意："
                        android:layout_width="wrap_content"
                        android:layout_height="match_parent"/>
@@ -125,7 +113,7 @@
 
                    <TextView
                        android:textSize="20dp"
-                       android:textColor="#fff"
+                       android:textColor="#161313"
                        android:id="@+id/web1"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"/>

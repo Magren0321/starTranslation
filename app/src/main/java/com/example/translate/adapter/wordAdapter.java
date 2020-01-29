@@ -47,11 +47,11 @@ public class wordAdapter extends BaseAdapter {
         if(view == null){
             viewHolder = new ViewHolder();
             view = layoutInflater.inflate(R.layout.item,null);
-            viewHolder.explain = view.findViewById(R.id.explain);
             viewHolder.translation = view.findViewById(R.id.translation);
             viewHolder.UkPhonetic =view.findViewById(R.id.UkPhonetic);
             viewHolder.UsPhonetic =view.findViewById(R.id.UsPhonetic);
             viewHolder.web1 = view.findViewById(R.id.web1);
+            viewHolder.web_information = view.findViewById(R.id.web_information);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
@@ -62,9 +62,15 @@ public class wordAdapter extends BaseAdapter {
             viewHolder.translation.setText(bean.getTranslation().get(0));
         }
         if(bean.getBasic()!=null){
-            viewHolder.web1.setText(bean.getBasic().getExplains().get(0));
-            viewHolder.UkPhonetic.setText(bean.getBasic().getUkSpeech());
-            viewHolder.UsPhonetic.setText(bean.getBasic().getUsSpeech());
+            viewHolder.web_information.setVisibility(View.VISIBLE);
+            int n = bean.getBasic().getExplains().size();
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int l = 0 ; l< n;l++){
+                stringBuilder.append(bean.getBasic().getExplains().get(l)+" ;\n");
+            }
+            viewHolder.web1.setText(stringBuilder);
+            viewHolder.UkPhonetic.setText(bean.getBasic().getUkPhonetic());
+            viewHolder.UsPhonetic.setText(bean.getBasic().getUsPhonetic());
         }
 
 
@@ -74,10 +80,10 @@ public class wordAdapter extends BaseAdapter {
 }
 
 class ViewHolder{
-    public TextView explain;
     public TextView translation;
     public TextView UsPhonetic;
     public TextView UkPhonetic;
     public TextView web1;
+    public TextView web_information;
     public Button star_lv;
 }
