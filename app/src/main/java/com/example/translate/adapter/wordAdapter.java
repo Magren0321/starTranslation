@@ -1,6 +1,8 @@
 package com.example.translate.adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,10 @@ import android.widget.TextView;
 
 import com.example.translate.Base.TranslationBean;
 import com.example.translate.R;
+import com.example.translate.Utils.ToastUtils;
+import com.example.translate.room.wordBean;
+import com.example.translate.room.wordDatabase;
+
 
 import java.util.List;
 
@@ -19,10 +25,14 @@ public class wordAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public wordAdapter(List<TranslationBean> mList, Context context){
+    private String to;
+
+
+    public wordAdapter(List<TranslationBean> mList, Context context,String to){
         this.mList = mList;
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+        this.to = to;
     }
 
 
@@ -52,6 +62,7 @@ public class wordAdapter extends BaseAdapter {
             viewHolder.UsPhonetic =view.findViewById(R.id.UsPhonetic);
             viewHolder.web1 = view.findViewById(R.id.web1);
             viewHolder.web_information = view.findViewById(R.id.web_information);
+            viewHolder.star_lv = view.findViewById(R.id.star_lv);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
@@ -73,6 +84,24 @@ public class wordAdapter extends BaseAdapter {
             viewHolder.UsPhonetic.setText(bean.getBasic().getUsPhonetic());
         }
 
+        viewHolder.star_lv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String query = bean.getQuery();
+                String translation = bean.getTranslation().get(0);
+                if(wordDatabase.getDefault(context).getWordDao().loadWordByQuery(query,translation).size()!=0){
+                    ToastUtils.shortToast(context,"已存在收藏列表");
+                }else {
+                    wordBean wordBean = new wordBean();
+                    wordBean.setQuery(query);
+                    wordBean.setTo(to);
+                    wordBean.setTranslation(translation);
+                    wordDatabase.getDefault(context).getWordDao().insertWord(wordBean);
+                    ToastUtils.shortToast(context,"收藏成功");
+                }
+            }
+        });
+
 
 
         return view;
@@ -86,4 +115,5 @@ class ViewHolder{
     public TextView web1;
     public TextView web_information;
     public Button star_lv;
+
 }

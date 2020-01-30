@@ -164,7 +164,7 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
                         Log.i("xxx",translationBean.toString());
                         List<TranslationBean>list_word = new ArrayList<>();
                         list_word.add(translationBean);
-                        wordAdapter = new wordAdapter(list_word,getContext());
+                        wordAdapter = new wordAdapter(list_word,getContext(),to);
                         lv.setAdapter(wordAdapter);
                     }
                 });

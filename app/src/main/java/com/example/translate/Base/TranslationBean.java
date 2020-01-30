@@ -1,9 +1,11 @@
 package com.example.translate.Base;
 
+
+
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
 
 
 public class TranslationBean {
@@ -12,8 +14,8 @@ public class TranslationBean {
     private String query;     //源语言
     private List<String> translation; //翻译结果
     private basicEntity basic;
-
     private List<WebEntity> web;
+    private String tSpeakUrl;
 
     public class basicEntity {
         @SerializedName("us-phonetic")
@@ -25,6 +27,7 @@ public class TranslationBean {
         private String phonetic;   //默认音标
         @SerializedName("uk-phonetic")
         private String ukPhonetic;   //美式英标
+
         private List<String> explains;  //基本释义
 
 
@@ -142,9 +145,16 @@ public class TranslationBean {
         this.basic = basic;
     }
 
+    public void settSpeakUrl(String tSpeakUrl){ this.tSpeakUrl = tSpeakUrl;}
+
+    public String gettSpeakUrl(){ return tSpeakUrl; }
+
     public String toString(){
         return "errorcode："+errorCode+"/"+
-                "Query："+query;
+                "Query："+query + "/" +
+                "translation：" + translation + "/"+
+                "phonetic："+ basic.phonetic + "/" +
+                "tSpeakUrl：" + tSpeakUrl;
     }
 
 }
