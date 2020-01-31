@@ -23,7 +23,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:background="@drawable/home"/>
+            android:background="@drawable/home_click"/>
 
         <TextView
             android:id="@+id/tv_main_tab_1"

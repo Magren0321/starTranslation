@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/src"
+                android:id="@+id/starQuery"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:text="@string/test"
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/dst"
+                android:id="@+id/starTranslation"
                 android:textSize="15dp"
                 android:text="@string/test"
                 android:textColor="#888181"
@@ -48,7 +48,7 @@
         <Button
             android:layout_marginRight="7dp"
             android:id="@+id/starbt"
-            android:background="@drawable/star"
+            android:background="@drawable/star_click"
             android:layout_gravity="center"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
