@@ -2,7 +2,9 @@ package com.example.translate.star;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -73,5 +75,13 @@ public class starFragment extends BaseFragment<starContract.Presenter> implement
             }
         });
 
+
+
+    }
+
+    @Override
+    public void showRefresh(List<wordBean>list) {
+        starWordAdapter = new starWordAdapter(getContext(),list);
+        lv_star.setAdapter(starWordAdapter);
     }
 }

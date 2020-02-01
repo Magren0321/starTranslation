@@ -8,21 +8,19 @@
         layout="@layout/view_toolbar"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <androidx.viewpager.widget.ViewPager
-
+        android:layout_weight="1"
         android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"/>
+
+
 
 
         <include
             layout="@layout/main_tab"/>
 
-    </RelativeLayout>
+
 
 
 

@@ -31,14 +31,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
 
 import static com.example.translate.Base.Constants.appID;
 import static com.example.translate.Base.Constants.appKey;
-import static com.example.translate.Base.Constants.signType;
+
 import static com.example.translate.Utils.Digest.getDigest;
 import static com.example.translate.Utils.Digest.truncate;
 
@@ -152,23 +148,7 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
 
     }
 
-    @SuppressLint("CheckResult")
-    public void netConnection(){
-        netWork.getInstance().getDataService()
-                .translateYouDao(q,from,to,appID,salt,sign,signType,curtime)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<TranslationBean>() {
-                    @Override
-                    public void accept(TranslationBean translationBean) throws Exception {
-                        Log.i("xxx",translationBean.toString());
-                        List<TranslationBean>list_word = new ArrayList<>();
-                        list_word.add(translationBean);
-                        wordAdapter = new wordAdapter(list_word,getContext(),to);
-                        lv.setAdapter(wordAdapter);
-                    }
-                });
-    }
+
 
     @OnClick({R.id.bt,R.id.arrow})
     public void onViewClicked(View view){
@@ -180,7 +160,7 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
                     curtime = String.valueOf(System.currentTimeMillis() / 1000);
                     String signStr = appID+truncate(q)+salt+curtime+appKey;
                     sign = getDigest(signStr);
-                    netConnection();
+                    mPresenter.netConnection(q,from,to,salt,sign,curtime);
                 }
                 break;
             case R.id.arrow:
@@ -197,4 +177,9 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
     }
 
 
+    @Override
+    public void showResult(List<TranslationBean> list) {
+        wordAdapter = new wordAdapter(list,getContext(),to);
+        lv.setAdapter(wordAdapter);
+    }
 }

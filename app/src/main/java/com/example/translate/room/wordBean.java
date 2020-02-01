@@ -14,6 +14,12 @@ public class wordBean {
     String to;
     @ColumnInfo(name = "translation")
     String translation;
+    @ColumnInfo(name = "webExplain")
+    String webExplain;
+    @ColumnInfo(name = "usPhonetic")
+    String usPhonetic;
+    @ColumnInfo(name = "ukPhonetic")
+    String ukPhonetic;
 
     public String getQuery() {
         return query;
@@ -37,5 +43,29 @@ public class wordBean {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
+
+    public String getUkPhonetic() {
+        return ukPhonetic;
+    }
+
+    public String getUsPhonetic() {
+        return usPhonetic;
+    }
+
+    public void setUkPhonetic(String ukPhonetic) {
+        this.ukPhonetic = ukPhonetic;
+    }
+
+    public void setUsPhonetic(String usPhonetic) {
+        this.usPhonetic = usPhonetic;
+    }
+
+    public void setWebExplain(String webExplain) {
+        this.webExplain = webExplain;
+    }
+
+    public String getWebExplain() {
+        return webExplain;
     }
 }

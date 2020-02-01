@@ -1,6 +1,7 @@
 package com.example.translate.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,11 +11,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
+import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.translate.R;
 import com.example.translate.Utils.ToastUtils;
 
+import com.example.translate.homepage.MainActivity;
 import com.example.translate.room.wordBean;
 import com.example.translate.room.wordDatabase;
 
@@ -29,12 +34,8 @@ public class starWordAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-    String salt;
     String q;
-    String from = "auto";
     String to;
-    String sign;
-    String curtime;
 
 
     public starWordAdapter(Context context, List<wordBean> list){
@@ -95,7 +96,12 @@ public class starWordAdapter extends BaseAdapter {
             }
         });
 
-
+        viewHolder.starQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(list.get(i));
+            }
+        });
 
         return view;
     }
@@ -105,6 +111,25 @@ public class starWordAdapter extends BaseAdapter {
         public TextView starQuery;
         public TextView starTranslation;
         public Button starbt;
+    }
+
+    public void showDialog(wordBean wordBean){
+        View view = LayoutInflater.from(context).inflate(R.layout.item,null);
+        final AlertDialog dialog = new AlertDialog.Builder(context).setView(view).create();
+        TextView translation = view.findViewById(R.id.translation);
+        TextView UkPhonetic =view.findViewById(R.id.UkPhonetic);
+        TextView UsPhonetic =view.findViewById(R.id.UsPhonetic);
+        TextView web1 = view.findViewById(R.id.web1);
+        TextView web_information = view.findViewById(R.id.web_information);
+        if(wordBean.getWebExplain()!=null){
+            web_information.setVisibility(View.VISIBLE);
+            web1.setText(wordBean.getWebExplain());
+        }
+        translation.setText(wordBean.getTranslation());
+        UkPhonetic.setText(wordBean.getUkPhonetic());
+        UsPhonetic.setText(wordBean.getUsPhonetic());
+        dialog.show();
+
     }
 
 

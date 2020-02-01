@@ -20,4 +20,6 @@
 
     <color name="colorClick">#3F51B5</color>
 
+    <color name="colorDialogBackground">#F8F5F5</color>
+
 </resources>

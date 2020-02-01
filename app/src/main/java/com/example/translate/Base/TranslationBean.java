@@ -3,6 +3,8 @@ package com.example.translate.Base;
 
 
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -149,13 +151,7 @@ public class TranslationBean {
 
     public String gettSpeakUrl(){ return tSpeakUrl; }
 
-    public String toString(){
-        return "errorcode："+errorCode+"/"+
-                "Query："+query + "/" +
-                "translation：" + translation + "/"+
-                "phonetic："+ basic.phonetic + "/" +
-                "tSpeakUrl：" + tSpeakUrl;
-    }
+
 
 }
 

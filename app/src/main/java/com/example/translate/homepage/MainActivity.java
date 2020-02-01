@@ -18,6 +18,7 @@ import com.example.translate.R;
 import com.example.translate.Translate.translateFragment;
 
 import com.example.translate.adapter.F_Adapter;
+import com.example.translate.room.wordDatabase;
 import com.example.translate.star.starFragment;
 
 import java.util.ArrayList;
@@ -45,7 +46,10 @@ public class MainActivity extends BaseActivity<hompage_contract.Presenter> imple
 
     F_Adapter madapter;
 
+    List<Fragment> list = new ArrayList<>();
 
+    translateFragment translateFragment = new translateFragment();
+    starFragment starFragment = new starFragment();
 
     @Override
     protected hompage_contract.Presenter createPresenter() {
@@ -65,13 +69,11 @@ public class MainActivity extends BaseActivity<hompage_contract.Presenter> imple
     @Override
     protected void initView() {
 
-        List<Fragment> list = new ArrayList<>();
-        list.add(new translateFragment());
-        list.add(new starFragment());
+        list.add(translateFragment);
+        list.add( starFragment);
         madapter = new F_Adapter(getSupportFragmentManager(),list);
         mViewPager.setAdapter(madapter);
         setToolbarTitle("翻译");
-
     }
 
     @Override
@@ -98,14 +100,15 @@ public class MainActivity extends BaseActivity<hompage_contract.Presenter> imple
                        tv_1.setTextColor(R.color.colorClick);
                        img_2.setBackgroundResource(R.drawable.star);
                        tv_2.setTextColor(R.color.black_semi_transparent);
-                       setToolbarTitle("翻译");
+                       mtoolbar.setTitle("翻译");
                        break;
                    case 1:
                        img_2.setBackgroundResource(R.drawable.star_click);
                        tv_2.setTextColor(R.color.colorClick);
                        img_1.setBackgroundResource(R.drawable.home);
                        tv_1.setTextColor(R.color.black_semi_transparent);
-                       setToolbarTitle("收藏");
+                       mtoolbar.setTitle("收藏");
+                       starFragment.showRefresh(wordDatabase.getDefault(getApplicationContext()).getWordDao().getAll());
                        break;
                }
            }
@@ -127,7 +130,7 @@ public class MainActivity extends BaseActivity<hompage_contract.Presenter> imple
                 tv_1.setTextColor(R.color.colorClick);
                 img_2.setBackgroundResource(R.drawable.star);
                 tv_2.setTextColor(R.color.black_semi_transparent);
-                setToolbarTitle("翻译");
+                mtoolbar.setTitle("翻译");
                 break;
             case R.id.ll_main_tab_2:
                 mViewPager.setCurrentItem(1);
@@ -135,7 +138,8 @@ public class MainActivity extends BaseActivity<hompage_contract.Presenter> imple
                 tv_2.setTextColor(R.color.colorClick);
                 img_1.setBackgroundResource(R.drawable.home);
                 tv_1.setTextColor(R.color.black_semi_transparent);
-                setToolbarTitle("收藏");
+                mtoolbar.setTitle("收藏");
+                starFragment.showRefresh(wordDatabase.getDefault(getApplicationContext()).getWordDao().getAll());
                 break;
         }
     }

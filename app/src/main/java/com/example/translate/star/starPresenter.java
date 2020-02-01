@@ -1,6 +1,9 @@
 package com.example.translate.star;
 
+
+
 import com.example.translate.Base.BasePresenterImpl;
+
 
 
 public class starPresenter extends BasePresenterImpl implements starContract.Presenter {
@@ -10,5 +13,6 @@ public class starPresenter extends BasePresenterImpl implements starContract.Pre
         mView = view;
         this.mView.setPresenter(this);
     }
+
 
 }

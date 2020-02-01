@@ -24,7 +24,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Nullable
     @BindView(R.id.mtoolbar)
-    Toolbar mtoolbar;
+    public Toolbar mtoolbar;
 
     Unbinder bind;
 
