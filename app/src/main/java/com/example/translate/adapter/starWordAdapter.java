@@ -69,7 +69,7 @@ public class starWordAdapter extends BaseAdapter {
             viewHolder.starbt = view.findViewById(R.id.starbt);
             viewHolder.starQuery = view.findViewById(R.id.starQuery);
             viewHolder.starTranslation = view.findViewById(R.id.starTranslation);
-
+            view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
