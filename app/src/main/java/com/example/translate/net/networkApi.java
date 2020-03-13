@@ -7,7 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface networkApi {
-
     @GET("api?")
     Observable<TranslationBean> translateYouDao(
             @Query("q") String q,

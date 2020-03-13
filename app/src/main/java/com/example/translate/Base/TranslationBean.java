@@ -2,9 +2,6 @@ package com.example.translate.Base;
 
 
 
-
-import androidx.annotation.Nullable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

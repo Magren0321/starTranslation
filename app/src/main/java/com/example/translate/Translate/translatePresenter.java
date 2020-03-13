@@ -1,7 +1,6 @@
 package com.example.translate.Translate;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import com.example.translate.Base.BasePresenterImpl;
 import com.example.translate.Base.TranslationBean;

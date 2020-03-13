@@ -10,7 +10,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class netWork {
-
     private static networkApi sContactsApi;
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();

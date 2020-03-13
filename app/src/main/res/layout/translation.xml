@@ -73,6 +73,7 @@
                 <EditText
                     android:background="@null"
                     android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_marginLeft="15dp"
                     android:hint="Search"
                     android:layout_weight="5"
