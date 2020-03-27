@@ -10,6 +10,7 @@ public interface translateContract {
 
     interface View extends BaseView<Presenter> {
         void showResult(List<TranslationBean> list);
+        void showConnection();
     }
 
     interface Presenter extends BasePresenter {

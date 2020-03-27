@@ -18,6 +18,7 @@ import com.example.translate.Base.BaseFragment;
 
 import com.example.translate.Base.TranslationBean;
 import com.example.translate.R;
+import com.example.translate.Utils.ToastUtils;
 import com.example.translate.adapter.wordAdapter;
 import com.example.translate.net.netWork;
 
@@ -181,5 +182,10 @@ public class translateFragment extends BaseFragment<translateContract.Presenter>
     public void showResult(List<TranslationBean> list) {
         wordAdapter = new wordAdapter(list,getContext(),to);
         lv.setAdapter(wordAdapter);
+    }
+
+    @Override
+    public void showConnection() {
+        ToastUtils.shortToast(getContext(),"网络错误");
     }
 }
