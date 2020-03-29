@@ -18,6 +18,7 @@ public abstract class BasePresenterImpl implements BasePresenter {
         if (mSubscriptions != null) {
             mSubscriptions.dispose();
             mSubscriptions.clear();
+            mSubscriptions = null;
         }
     }
 }
